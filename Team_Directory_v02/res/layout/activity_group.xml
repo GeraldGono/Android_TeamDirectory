@@ -5,32 +5,14 @@
     android:layout_height="match_parent"
     tools:context=".Group" >
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/imageView1"
-        android:layout_below="@+id/imageView1"
-        android:layout_marginTop="47dp"
-        android:src="@drawable/ic_launcher" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/imageView4"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_marginBottom="14dp"
-        android:text="YELLOW" />
-
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/textView2"
         android:layout_alignBottom="@+id/textView2"
-        android:layout_alignLeft="@+id/imageView4"
-        android:text="BROWN" />
+        android:layout_alignLeft="@+id/imageView2"
+        android:text="BLUE" />
 
     <Button
         android:id="@+id/main"
@@ -39,70 +21,61 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="32dp"
-        android:text="Main menu"
-        android:onClick="menu" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/main"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_marginBottom="44dp"
-        android:text="GREEN" />
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/imageView5"
-        android:layout_alignRight="@+id/imageView3"
-        android:layout_marginBottom="18dp"
-        android:text="VIOLET" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView1"
-        android:layout_alignBottom="@+id/textView1"
-        android:layout_alignLeft="@+id/imageView4"
-        android:text="ORANGE" />
+        android:onClick="menu"
+        android:text="Main menu" />
 
     <ImageView
         android:id="@+id/imageView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/textView6"
-        android:layout_alignLeft="@+id/textView4"
+        android:layout_alignLeft="@+id/imageView2"
         android:layout_marginBottom="33dp"
+        android:src="@drawable/ic_launcher" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/main"
+        android:layout_alignRight="@+id/imageView5"
+        android:layout_marginBottom="41dp"
+        android:text="GREEN" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/imageView1"
+        android:layout_marginLeft="63dp"
+        android:layout_marginTop="46dp"
+        android:text="YELLOW" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_alignTop="@+id/imageView6"
         android:src="@drawable/ic_launcher" />
 
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/imageView3"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="71dp"
-        android:src="@drawable/ic_launcher" />
-
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/imageView2"
-        android:layout_alignTop="@+id/imageView3"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="76dp"
+        android:layout_marginTop="55dp"
+        android:layout_toRightOf="@+id/textView2"
         android:src="@drawable/ic_launcher" />
 
     <ImageView
         android:id="@+id/imageView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="72dp"
-        android:layout_marginTop="28dp"
+        android:layout_alignLeft="@+id/textView5"
+        android:layout_alignTop="@+id/imageView2"
         android:src="@drawable/ic_launcher" />
 
     <TextView
@@ -113,13 +86,5 @@
         android:layout_alignBottom="@+id/textView5"
         android:layout_alignLeft="@+id/imageView6"
         android:text="RED" />
-
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/textView5"
-        android:layout_alignTop="@+id/imageView6"
-        android:src="@drawable/ic_launcher" />
 
 </RelativeLayout>

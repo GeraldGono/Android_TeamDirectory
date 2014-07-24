@@ -22,6 +22,30 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.example.team_directory_v02.DisplayMember"
+            android:label="@string/title_activity_display_member" >
+        </activity>
+        <activity
+            android:name="com.example.team_directory_v02.Group"
+            android:label="@string/title_activity_group" >
+        </activity>
+         <activity
+            android:name="com.example.team_directory_v02.RedActivity"
+            android:label="@string/title_activity_red_member" >
+        </activity>
+         <activity
+            android:name="com.example.team_directory_v02.GreenActivity"
+            android:label="@string/title_activity_green_member" >
+        </activity>
+         <activity
+            android:name="com.example.team_directory_v02.BlueActivity"
+            android:label="@string/title_activity_blue_member" >
+        </activity>
+         <activity
+            android:name="com.example.team_directory_v02.YellowActivity"
+            android:label="@string/title_activity_yellow_member" >
+        </activity>
     </application>
 
 </manifest>
