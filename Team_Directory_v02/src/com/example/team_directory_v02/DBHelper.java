@@ -89,33 +89,18 @@ public class DBHelper extends SQLiteOpenHelper {
 	// for Color member
 	public ArrayList<Member> getAllColorMembers(String color) {
 		ArrayList<Member> array_list_color = new ArrayList<Member>();
-		Log.d("sana gumana", "Color array list created");
+		Log.d("working", "Color array list created");
 		// hp = new HashMap();
 		SQLiteDatabase db = this.getReadableDatabase();
-
-		/*
-		 * Cursor res = db.rawQuery( MEMBERS_TABLE_NAME, new String[] {
-		 * MEMBERS_COLUMN_NAME, MEMBERS_COLUMN_DEPT, MEMBERS_COLUMN_COLOR },
-		 * MEMBERS_COLUMN_COLOR + "=" + color, //new String[] {color}, );
-		 */
-
-		/*
-		 * Cursor res = db .query(MEMBERS_TABLE_NAME, new String[] {
-		 * MEMBERS_COLUMN_ID, MEMBERS_COLUMN_NAME, MEMBERS_COLUMN_DEPT,
-		 * MEMBERS_COLUMN_COLOR }, MEMBERS_COLUMN_COLOR + " like " + color,
-		 * null, null, null, null);
-		 */
-
 		String selectQuery = ("SELECT * FROM " + MEMBERS_TABLE_NAME + " WHERE "
 				+ MEMBERS_COLUMN_COLOR + " = ?");
 		// Cursor res = db.rawQuery(selectQuery, new String[] { color });
-		Cursor res = db.rawQuery(selectQuery,
-				new String[] { color });
+		Cursor res = db.rawQuery(selectQuery, new String[] { color });
 
 		if (res.moveToFirst()) {
 			Log.d("res.moveToFirst()", "res.moveToFirst()");
 			while (res.isAfterLast() == false) {
-				Log.d("gagana yan", res.getString(res
+				Log.d("working", res.getString(res
 						.getColumnIndexOrThrow(MEMBERS_COLUMN_NAME)));
 				Member member = new Member(res.getString(res
 						.getColumnIndexOrThrow(MEMBERS_COLUMN_NAME)),
@@ -125,42 +110,10 @@ public class DBHelper extends SQLiteOpenHelper {
 								.getColumnIndexOrThrow(MEMBERS_COLUMN_COLOR)));
 
 				array_list_color.add(member);
-				/*
-				 * array_list.add(res.getString(res
-				 * .getColumnIndex(MEMBERS_COLUMN_COLOR)));
-				 */
 				res.moveToNext();
 			}
 		}
 		return array_list_color;
 	}
-	/*
-	 * // for Blue member public ArrayList getAllBlueMembers(String color) {
-	 * ArrayList array_list = new ArrayList(); // hp = new HashMap();
-	 * SQLiteDatabase db = this.getReadableDatabase(); Cursor res =
-	 * db.rawQuery("select * from members where color like blue" + color, null);
-	 * res.moveToFirst(); while (res.isAfterLast() == false) {
-	 * array_list.add(res.getString(res .getColumnIndex(MEMBERS_COLUMN_NAME)));
-	 * array_list.add(res.getString(res .getColumnIndex(MEMBERS_COLUMN_COLOR)));
-	 * res.moveToNext(); } return array_list; }
-	 * 
-	 * // for Green member public ArrayList getAllGreenMembers(String color) {
-	 * ArrayList array_list = new ArrayList(); // hp = new HashMap();
-	 * SQLiteDatabase db = this.getReadableDatabase(); Cursor res =
-	 * db.rawQuery("select * from members where color like green" + color,
-	 * null); res.moveToFirst(); while (res.isAfterLast() == false) {
-	 * array_list.add(res.getString(res .getColumnIndex(MEMBERS_COLUMN_NAME)));
-	 * array_list.add(res.getString(res .getColumnIndex(MEMBERS_COLUMN_COLOR)));
-	 * res.moveToNext(); } return array_list; }
-	 * 
-	 * // for Yellow member public ArrayList getAllYellowMembers(String color) {
-	 * ArrayList array_list = new ArrayList(); // hp = new HashMap();
-	 * SQLiteDatabase db = this.getReadableDatabase(); Cursor res =
-	 * db.rawQuery("select * from members where color like yellow" + color,
-	 * null); res.moveToFirst(); while (res.isAfterLast() == false) {
-	 * array_list.add(res.getString(res .getColumnIndex(MEMBERS_COLUMN_NAME)));
-	 * array_list.add(res.getString(res .getColumnIndex(MEMBERS_COLUMN_COLOR)));
-	 * res.moveToNext(); } return array_list; }
-	 */
 
 }

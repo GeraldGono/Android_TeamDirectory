@@ -6,10 +6,15 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,14 +32,22 @@ public class DisplayMember extends Activity {
 		setContentView(R.layout.activity_display_member);
 		name = (TextView) findViewById(R.id.editTextName);
 		dept = (TextView) findViewById(R.id.editTextDept);
-		color = (TextView) findViewById(R.id.editTextColor);
+		// color = (TextView) findViewById(R.id.editTextColor);
+		Spinner spinner = (Spinner) findViewById(R.id.color_spinner);
 		mydb = new DBHelper(this);
+		// for spinner selection of color later
+		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+				this, R.array.color_spinner,
+				android.R.layout.simple_spinner_item);
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		spinner.setAdapter(adapter);
+		Log.d("spinner", "color_spinner");
 
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
 			int Value = extras.getInt("id");
 			if (Value > 0) {
-				//for view
+				// for view
 				Cursor rs = mydb.getData(Value);
 				id_To_Update = Value;
 				rs.moveToFirst();
