@@ -36,6 +36,7 @@ public class DisplayMember extends Activity {
 		Spinner spinner = (Spinner) findViewById(R.id.color_spinner);
 		mydb = new DBHelper(this);
 		// for spinner selection of color later
+		// not yet working properly with the use of spinner 
 		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
 				this, R.array.color_spinner,
 				android.R.layout.simple_spinner_item);
@@ -94,7 +95,7 @@ public class DisplayMember extends Activity {
 		}
 		return true;
 	}
-
+	// for menu selection EDIT/DELETE members
 	public boolean onOptionsItemSelected(MenuItem item) {
 		super.onOptionsItemSelected(item);
 		switch (item.getItemId()) {
