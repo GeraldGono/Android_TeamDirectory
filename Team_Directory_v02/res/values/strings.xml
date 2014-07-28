@@ -17,11 +17,12 @@
     <string name="title_activity_sound_settings">Setting</string>
     <string name="name">Name</string>
     <string name="dept">Dept</string>
-    <string name="color">Color</string>
+    <string name="GroupColor">GroupColor</string>
     <string name="save">Save Member</string>
     <string name="deleteContact">Are you sure, you want to delete it.</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="ON_OFF">sound</string>
     <string-array name="color_group">
         <item>red</item>
         <item>blue</item>

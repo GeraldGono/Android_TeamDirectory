@@ -20,8 +20,8 @@ public class DBHelper extends SQLiteOpenHelper {
 	public static final String MEMBERS_COLUMN_DEPT = "dept";
 	public static final String MEMBERS_COLUMN_COLOR = "color";
 
-	@SuppressWarnings("rawtypes")
-	private HashMap hp;
+	// @SuppressWarnings("rawtypes")
+	// private HashMap Hp;
 
 	public DBHelper(Context context) {
 		super(context, DATABASE_NAME, null, 1);
@@ -86,34 +86,31 @@ public class DBHelper extends SQLiteOpenHelper {
 				new String[] { Integer.toString(id) });
 	}
 
-	// for Color member
-	public ArrayList<Member> getAllColorMembers(String color) {
-		ArrayList<Member> array_list_color = new ArrayList<Member>();
-		Log.d("working", "Color array list created");
-		// hp = new HashMap();
+	// retrieve colors
+	public ArrayList<HashMap<String, Object>> loadAllEmployees;
+	HashMap<String, Object> employeeInfo;
+
+	public ArrayList<HashMap<String, Object>> loadColors(String color) {
+
+		loadAllEmployees = new ArrayList<HashMap<String, Object>>();
 		SQLiteDatabase db = this.getReadableDatabase();
 		String selectQuery = ("SELECT * FROM " + MEMBERS_TABLE_NAME + " WHERE "
 				+ MEMBERS_COLUMN_COLOR + " = ?");
-		// Cursor res = db.rawQuery(selectQuery, new String[] { color });
+
 		Cursor res = db.rawQuery(selectQuery, new String[] { color });
 
-		if (res.moveToFirst()) {
-			Log.d("res.moveToFirst()", "res.moveToFirst()");
-			while (res.isAfterLast() == false) {
-				Log.d("working", res.getString(res
-						.getColumnIndexOrThrow(MEMBERS_COLUMN_NAME)));
-				Member member = new Member(res.getString(res
-						.getColumnIndexOrThrow(MEMBERS_COLUMN_NAME)),
-						res.getString(res
-								.getColumnIndexOrThrow(MEMBERS_COLUMN_DEPT)),
-						res.getString(res
-								.getColumnIndexOrThrow(MEMBERS_COLUMN_COLOR)));
+		int getName = res.getColumnIndex(MEMBERS_COLUMN_NAME);
+		int getID = res.getColumnIndex(MEMBERS_COLUMN_ID);
 
-				array_list_color.add(member);
-				res.moveToNext();
-			}
+		for (res.moveToFirst(); !res.isAfterLast(); res.moveToNext()) {
+
+			employeeInfo = new HashMap<String, Object>();
+			employeeInfo.put("name", res.getString(getName));
+			employeeInfo.put("ID", res.getString(getID));
+			loadAllEmployees.add(employeeInfo);
 		}
-		return array_list_color;
+
+		return loadAllEmployees;
 	}
 
 }

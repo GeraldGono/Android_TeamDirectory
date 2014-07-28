@@ -5,22 +5,13 @@
     android:layout_height="match_parent"
     tools:context=".Group" >
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView2"
-        android:layout_alignBottom="@+id/textView2"
-        android:layout_alignLeft="@+id/imageView2"
-        android:text="BLUE" />
-
     <Button
         android:id="@+id/main"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="23dp"
         android:onClick="menu"
         android:text="Main menu" />
 
@@ -28,63 +19,34 @@
         android:id="@+id/imageView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/textView6"
-        android:layout_alignLeft="@+id/imageView2"
-        android:layout_marginBottom="33dp"
-        android:src="@drawable/ic_launcher" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_above="@+id/main"
-        android:layout_alignRight="@+id/imageView5"
-        android:layout_marginBottom="41dp"
-        android:text="GREEN" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/imageView1"
-        android:layout_marginLeft="63dp"
-        android:layout_marginTop="46dp"
-        android:text="YELLOW" />
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="24dp"
+        android:src="@drawable/fire" />
 
     <ImageView
         android:id="@+id/imageView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView2"
+        android:layout_alignParentLeft="true"
         android:layout_alignTop="@+id/imageView6"
-        android:src="@drawable/ic_launcher" />
+        android:src="@drawable/earth" />
 
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="76dp"
-        android:layout_marginTop="55dp"
-        android:layout_toRightOf="@+id/textView2"
-        android:src="@drawable/ic_launcher" />
+        android:layout_alignBottom="@+id/imageView1"
+        android:layout_alignParentLeft="true"
+        android:src="@drawable/water" />
 
     <ImageView
         android:id="@+id/imageView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView5"
-        android:layout_alignTop="@+id/imageView2"
-        android:src="@drawable/ic_launcher" />
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView5"
-        android:layout_alignBottom="@+id/textView5"
-        android:layout_alignLeft="@+id/imageView6"
-        android:text="RED" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="31dp"
+        android:src="@drawable/wind" />
 
 </RelativeLayout>

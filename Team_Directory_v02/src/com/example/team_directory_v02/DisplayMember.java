@@ -24,11 +24,17 @@ public class DisplayMember extends Activity implements OnItemSelectedListener {
 
 	private DBHelper mydb;
 	public int id_To_Update = 0;
-	public TextView name;
-	public TextView dept;
-	// public TextView color;
+	public TextView name, dept, colorChosen, color, chooseColor;
 	public Spinner colorChoices;
-	public int onTouch;
+	public int sound, mPos;
+	public String mSelection;
+
+	// @Override
+	// protected void onSaveInstanceState(Bundle outState) {
+	// super.onSaveInstanceState(outState);
+	// outState.putInt("colorChoices", colorChoices.getSelectedItemPosition());
+	//
+	// }
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -36,30 +42,30 @@ public class DisplayMember extends Activity implements OnItemSelectedListener {
 		setContentView(R.layout.activity_display_member);
 		name = (TextView) findViewById(R.id.editTextName);
 		dept = (TextView) findViewById(R.id.editTextDept);
-		// color = (TextView) findViewById(R.id.editTextColor);
+		color = (TextView) findViewById(R.id.color_chosen);
+		chooseColor = (TextView) findViewById(R.id.textView4);
 		colorChoices = (Spinner) findViewById(R.id.color_group);
+
 		colorChoices.setOnItemSelectedListener(this);
 
+		// if (savedInstanceState != null) {
+		// colorChoices.setSelection(savedInstanceState.getInt("colorChoices",
+		// 0));
+		// }
+		// spinner item categories
 		List<String> categories = new ArrayList<String>();
 		categories.add("blue");
 		categories.add("red");
 		categories.add("green");
 		categories.add("yellow");
-
+		// spinner array adapter
 		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_spinner_item, categories);
 		dataAdapter
 				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		colorChoices.setAdapter(dataAdapter);
 
-		// ArrayAdapter<CharSequence> adapter = ArrayAdapter
-		// .createFromResource(this, R.array.color_group,
-		// android.R.layout.simple_spinner_item);
-		// adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		// colorChoices.setAdapter(adapter);
-
 		mydb = new DBHelper(this);
-
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
 			int Value = extras.getInt("id");
@@ -80,6 +86,8 @@ public class DisplayMember extends Activity implements OnItemSelectedListener {
 
 				Button b = (Button) findViewById(R.id.button1);
 				b.setVisibility(View.INVISIBLE);
+				colorChoices.setVisibility(View.INVISIBLE);
+				chooseColor.setVisibility(View.INVISIBLE);
 
 				name.setText((CharSequence) nam);
 				name.setFocusable(false);
@@ -89,9 +97,8 @@ public class DisplayMember extends Activity implements OnItemSelectedListener {
 				dept.setFocusable(false);
 				dept.setClickable(false);
 
-				// color.setText((CharSequence) col);
-				// color.setFocusable(false);
-				// color.setClickable(false);
+				color.setText((CharSequence) col);
+
 			}
 		}
 
@@ -100,13 +107,8 @@ public class DisplayMember extends Activity implements OnItemSelectedListener {
 	@Override
 	public void onItemSelected(AdapterView<?> parent, View view, int position,
 			long id) {
-		// On selecting a spinner item
-		String item = parent.getSelectedItem().toString();
-		
-
-		// Showing selected spinner item
-//		Toast.makeText(parent.getContext(), "Selected: " + item,
-//				Toast.LENGTH_LONG).show();
+		// TODO Auto-generated method stub
+		// String item = colorChoices.getSelectedItem().toString();
 
 	}
 
@@ -117,7 +119,7 @@ public class DisplayMember extends Activity implements OnItemSelectedListener {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
+
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
 			int Value = extras.getInt("id");
@@ -135,9 +137,11 @@ public class DisplayMember extends Activity implements OnItemSelectedListener {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		super.onOptionsItemSelected(item);
 		switch (item.getItemId()) {
-		case R.id.Edit_Member:
+		case R.id.Edit_Member: // edit member process
 			Button b = (Button) findViewById(R.id.button1);
 			b.setVisibility(View.VISIBLE);
+			colorChoices.setVisibility(View.VISIBLE);
+			chooseColor.setVisibility(View.VISIBLE);
 			name.setEnabled(true);
 			name.setFocusableInTouchMode(true);
 			name.setClickable(true);
@@ -146,12 +150,8 @@ public class DisplayMember extends Activity implements OnItemSelectedListener {
 			dept.setFocusableInTouchMode(true);
 			dept.setClickable(true);
 
-			// color.setEnabled(true);
-			// color.setFocusableInTouchMode(true);
-			// color.setClickable(true);
-
 			return true;
-		case R.id.Delete_Member:
+		case R.id.Delete_Member: // delete member process
 
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
 			builder.setMessage(R.string.delete)
@@ -167,6 +167,7 @@ public class DisplayMember extends Activity implements OnItemSelectedListener {
 											getApplicationContext(),
 											com.example.team_directory_v02.Group.class);
 									startActivity(intent);
+									finish();
 								}
 							})
 
@@ -188,6 +189,7 @@ public class DisplayMember extends Activity implements OnItemSelectedListener {
 		}
 	}
 
+	// saving new member process
 	public void run(View view) {
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
@@ -201,14 +203,15 @@ public class DisplayMember extends Activity implements OnItemSelectedListener {
 					Intent intent = new Intent(getApplicationContext(),
 							com.example.team_directory_v02.Group.class);
 					startActivity(intent);
+					finish();
 				} else {
 					Toast.makeText(getApplicationContext(), "not Updated",
 							Toast.LENGTH_SHORT).show();
 				}
 			} else {
 				if (mydb.insertMembers(name.getText().toString(), dept
-						.getText().toString(),
-						colorChoices.getSelectedItem().toString())) {
+						.getText().toString(), colorChoices.getSelectedItem()
+						.toString())) {
 					Toast.makeText(getApplicationContext(), "done",
 							Toast.LENGTH_SHORT).show();
 				} else {
@@ -218,9 +221,16 @@ public class DisplayMember extends Activity implements OnItemSelectedListener {
 				Intent intent = new Intent(getApplicationContext(),
 						com.example.team_directory_v02.Group.class);
 				startActivity(intent);
+				finish();
 			}
 		}
 
+	}
+
+	public void back(View v) {
+		Intent intent = new Intent(DisplayMember.this, Group.class);
+		startActivity(intent);
+		finish();
 	}
 
 }
