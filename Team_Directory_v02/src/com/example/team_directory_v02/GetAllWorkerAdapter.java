@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 
 public class GetAllWorkerAdapter extends ArrayAdapter<HashMap<String, Object>> {
 
@@ -56,6 +57,15 @@ public class GetAllWorkerAdapter extends ArrayAdapter<HashMap<String, Object>> {
 
 	}
 
+	class MyViewHolder {
+		public TextView tvname, tvID, tvcolor;
 
+		public MyViewHolder(View row) {
+			tvname = (TextView) row.findViewById(R.id.tvName);
+			tvID = (TextView) row.findViewById(R.id.tvID);
+
+		}
+
+	}
 
 }

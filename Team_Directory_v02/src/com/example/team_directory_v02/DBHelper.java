@@ -13,15 +13,10 @@ import android.util.Log;
 
 public class DBHelper extends SQLiteOpenHelper {
 
-	public static final String DATABASE_NAME = "MyDBName.db";
-	public static final String MEMBERS_TABLE_NAME = "members";
-	public static final String MEMBERS_COLUMN_ID = "id";
-	public static final String MEMBERS_COLUMN_NAME = "name";
-	public static final String MEMBERS_COLUMN_DEPT = "dept";
-	public static final String MEMBERS_COLUMN_COLOR = "color";
-
-	// @SuppressWarnings("rawtypes")
-	// private HashMap Hp;
+	public static final String DATABASE_NAME = "MyDBName.db",
+			MEMBERS_TABLE_NAME = "members", MEMBERS_COLUMN_ID = "id",
+			MEMBERS_COLUMN_NAME = "name", MEMBERS_COLUMN_DEPT = "dept",
+			MEMBERS_COLUMN_COLOR = "color";
 
 	public DBHelper(Context context) {
 		super(context, DATABASE_NAME, null, 1);
@@ -31,7 +26,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase db) {
 		// TODO Auto-generated method stub
 		db.execSQL(" create table members "
-				+ "(id integer primary key,name TEXT,dept TEXT,color TEXT)");
+				+ "(id integer primary key,name TEXT NOT NULL,dept TEXT NOT NULL,color TEXT NOT NULL)");
 	}
 
 	@Override
@@ -44,7 +39,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	public boolean insertMembers(String name, String dept, String color) {
 		SQLiteDatabase db = this.getWritableDatabase();
 		ContentValues contentValues = new ContentValues();
-
+		// insert new members in database
 		contentValues.put("name", name);
 		contentValues.put("dept", dept);
 		contentValues.put("color", color);

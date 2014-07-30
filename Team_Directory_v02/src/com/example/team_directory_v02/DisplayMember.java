@@ -163,10 +163,9 @@ public class DisplayMember extends Activity implements OnItemSelectedListener {
 									Toast.makeText(getApplicationContext(),
 											"Deleted Successfully",
 											Toast.LENGTH_SHORT).show();
-									Intent intent = new Intent(
+									startActivity(new Intent(
 											getApplicationContext(),
-											com.example.team_directory_v02.Group.class);
-									startActivity(intent);
+											Group.class));
 									finish();
 								}
 							})
@@ -200,9 +199,8 @@ public class DisplayMember extends Activity implements OnItemSelectedListener {
 								.getSelectedItem().toString())) {
 					Toast.makeText(getApplicationContext(), "Updated",
 							Toast.LENGTH_SHORT).show();
-					Intent intent = new Intent(getApplicationContext(),
-							com.example.team_directory_v02.Group.class);
-					startActivity(intent);
+					startActivity(new Intent(getApplicationContext(),
+							Group.class));
 					finish();
 				} else {
 					Toast.makeText(getApplicationContext(), "not Updated",
@@ -218,9 +216,7 @@ public class DisplayMember extends Activity implements OnItemSelectedListener {
 					Toast.makeText(getApplicationContext(), "not done",
 							Toast.LENGTH_SHORT).show();
 				}
-				Intent intent = new Intent(getApplicationContext(),
-						com.example.team_directory_v02.Group.class);
-				startActivity(intent);
+				startActivity(new Intent(getApplicationContext(), Group.class));
 				finish();
 			}
 		}
@@ -228,8 +224,7 @@ public class DisplayMember extends Activity implements OnItemSelectedListener {
 	}
 
 	public void back(View v) {
-		Intent intent = new Intent(DisplayMember.this, Group.class);
-		startActivity(intent);
+		startActivity(new Intent(getApplicationContext(), Group.class));
 		finish();
 	}
 

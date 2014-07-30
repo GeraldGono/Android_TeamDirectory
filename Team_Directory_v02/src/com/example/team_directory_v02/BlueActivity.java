@@ -6,7 +6,6 @@ import java.util.HashMap;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -15,7 +14,7 @@ import android.widget.AdapterView.OnItemClickListener;
 
 public class BlueActivity extends Activity {
 
-	private ListView obj;
+	private ListView myBlueMembers;
 	public DBHelper mydb;
 	public ArrayList<HashMap<String, Object>> loadAllColorEmployee;
 
@@ -28,11 +27,11 @@ public class BlueActivity extends Activity {
 
 		loadAllColorEmployee = mydb.loadColors("blue");
 
-		obj = (ListView) findViewById(R.id.listView1);
-		obj.setAdapter(new GetAllWorkerAdapter(BlueActivity.this,
+		myBlueMembers = (ListView) findViewById(R.id.listView1);
+		myBlueMembers.setAdapter(new GetAllWorkerAdapter(BlueActivity.this,
 				loadAllColorEmployee));
 
-		obj.setOnItemClickListener(new OnItemClickListener() {
+		myBlueMembers.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
@@ -43,7 +42,7 @@ public class BlueActivity extends Activity {
 				Bundle dataBundle = new Bundle();
 				dataBundle.putInt("id", getID);
 				Intent intent = new Intent(getApplicationContext(),
-						com.example.team_directory_v02.DisplayMember.class);
+						DisplayMember.class);
 				intent.putExtras(dataBundle);
 				startActivity(intent);
 				finish();
@@ -51,19 +50,15 @@ public class BlueActivity extends Activity {
 		});
 	}
 
-	public boolean onKeyDown(int keycode, KeyEvent event) {
-		if (keycode == KeyEvent.KEYCODE_BACK) {
-			moveTaskToBack(true);
-		}
-		return super.onKeyDown(keycode, event);
-
+	@Override
+	public void onBackPressed() {
+		startActivity(new Intent(getApplicationContext(), Group.class));
+		super.onBackPressed();
 	}
 
 	public void back(View v) {
-		Intent intent = new Intent(getApplicationContext(),
-				com.example.team_directory_v02.Group.class);
-		startActivity(intent);
-		finish();
+
+		onBackPressed();
 
 	}
 

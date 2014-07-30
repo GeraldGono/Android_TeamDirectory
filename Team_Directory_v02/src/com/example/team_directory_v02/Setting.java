@@ -48,9 +48,7 @@ public class Setting extends Activity {
 	}
 
 	public void menu(View v) {
-		Intent intent = new Intent(getApplicationContext(),
-				com.example.team_directory_v02.MainActivity.class);
-		startActivity(intent);
+		startActivity(new Intent(getApplicationContext(), MainActivity.class));
 		finish();
 
 	}

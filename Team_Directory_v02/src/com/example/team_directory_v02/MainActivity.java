@@ -12,32 +12,29 @@ import android.widget.Button;
 
 public class MainActivity extends Activity {
 
-	public int volume = 1, sound;
+	public int sound;
 	public MediaPlayer beep1;
-	private Button Group, Setting;
+	private Button group, setting, exit;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_frontpage);
 
 		beep1 = MediaPlayer.create(MainActivity.this, R.raw.beep1);
-
 		SharedPreferences pref = getApplicationContext().getSharedPreferences(
-				"higher", MODE_PRIVATE);
+				"Higher", MODE_PRIVATE);
 		Editor editor = pref.edit();
+		editor.commit();
 		sound = pref.getInt("sound", 0);
-		if (sound == 0) {
-			volume = 0;
-		}
 
-		Group = (Button) findViewById(R.id.grp);
-		Setting = (Button) findViewById(R.id.set);
+		group = (Button) findViewById(R.id.grp);
+		setting = (Button) findViewById(R.id.set);
+		exit = (Button) findViewById(R.id.ext);
 
-		Group.setOnClickListener(new OnClickListener() {
+		group.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent groupIntent = new Intent(MainActivity.this, Group.class);
-				startActivity(groupIntent);
+				startActivity(new Intent(getApplicationContext(), Group.class));
 				finish();
 				if (sound == 1) {
 					beep1.start();
@@ -46,13 +43,11 @@ public class MainActivity extends Activity {
 			}
 		});
 
-		Setting.setOnClickListener(new OnClickListener() {
+		setting.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				Intent settingIntent = new Intent(MainActivity.this,
-						Setting.class);
-				startActivity(settingIntent);
+				startActivity(new Intent(getApplicationContext(), Setting.class));
 				finish();
 				if (sound == 1) {
 					beep1.start();
@@ -61,10 +56,15 @@ public class MainActivity extends Activity {
 			}
 		});
 
-	}
+		exit.setOnClickListener(new OnClickListener() {
 
-	public void Exit(View v) {
-		System.exit(0);
+			@Override
+			public void onClick(View v) {
+				finish();
+
+			}
+		});
+
 	}
 
 }

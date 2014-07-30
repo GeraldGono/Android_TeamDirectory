@@ -18,7 +18,7 @@ public class Group extends Activity {
 	private ImageView imgR, imgG, imgB, imgY;
 	public MediaPlayer beep1;
 	public Button menu;
-	public int sound, volume = 1;
+	public int sound;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -34,16 +34,14 @@ public class Group extends Activity {
 		SharedPreferences pref = getApplicationContext().getSharedPreferences(
 				"higher", MODE_PRIVATE);
 		Editor editor = pref.edit();
+		editor.commit();
 		sound = pref.getInt("sound", 0);
-		if (sound == 0) {
-			volume = 0;
-		}
 		// open Red Group
 		imgR.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent RedIntent = new Intent(Group.this, RedActivity.class);
-				startActivity(RedIntent);
+				startActivity(new Intent(getApplicationContext(),
+						RedActivity.class));
 				finish();
 				if (sound == 1) {
 					beep1.start();
@@ -55,8 +53,8 @@ public class Group extends Activity {
 		imgG.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent GreenIntent = new Intent(Group.this, GreenActivity.class);
-				startActivity(GreenIntent);
+				startActivity(new Intent(getApplicationContext(),
+						GreenActivity.class));
 				finish();
 				if (sound == 1) {
 					beep1.start();
@@ -68,9 +66,8 @@ public class Group extends Activity {
 		imgY.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent YellowIntent = new Intent(Group.this,
-						YellowActivity.class);
-				startActivity(YellowIntent);
+				startActivity(new Intent(getApplicationContext(),
+						YellowActivity.class));
 				finish();
 				if (sound == 1) {
 					beep1.start();
@@ -82,8 +79,8 @@ public class Group extends Activity {
 		imgB.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent BlueIntent = new Intent(Group.this, BlueActivity.class);
-				startActivity(BlueIntent);
+				startActivity(new Intent(getApplicationContext(),
+						BlueActivity.class));
 				finish();
 				if (sound == 1) {
 					beep1.start();
@@ -109,7 +106,7 @@ public class Group extends Activity {
 			Bundle dataBundle = new Bundle();
 			dataBundle.putInt("id", 0);
 			Intent intent = new Intent(getApplicationContext(),
-					com.example.team_directory_v02.DisplayMember.class);
+					DisplayMember.class);
 			intent.putExtras(dataBundle);
 			startActivity(intent);
 			finish();
@@ -123,8 +120,7 @@ public class Group extends Activity {
 
 	// back to Main menu
 	public void menu(View v) {
-		Intent intent = new Intent(Group.this, MainActivity.class);
-		startActivity(intent);
+		startActivity(new Intent(Group.this, MainActivity.class));
 		finish();
 		if (sound == 1) {
 			beep1.start();
