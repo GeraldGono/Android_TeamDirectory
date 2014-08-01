@@ -1,7 +1,6 @@
 package com.example.team_directory_v02;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,13 +9,14 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-public class GetAllWorkerAdapter extends ArrayAdapter<HashMap<String, Object>> {
+// for code revision (Prevent using Hashmap for smooth access Operation)
+public class GetAllWorkerAdapter extends ArrayAdapter<ArrayList<?>> {
 
-	private final ArrayList<HashMap<String, Object>> dataList;
+	private final ArrayList<ArrayList<String>> dataList;
 	public Context context;
 
 	public GetAllWorkerAdapter(Context context,
-			ArrayList<HashMap<String, Object>> getList) {
+			ArrayList<ArrayList<String>> getList) {
 		super(context, R.layout.testview);
 		this.context = context;
 		this.dataList = getList;
@@ -34,22 +34,21 @@ public class GetAllWorkerAdapter extends ArrayAdapter<HashMap<String, Object>> {
 	public View getView(int position, View convertView, ViewGroup parent) {
 
 		View row = convertView;
-		MyViewHolder holder = null;
+		Member holder = null;
 		if (row == null) {
 			LayoutInflater inflater = (LayoutInflater) context
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			row = inflater.inflate(R.layout.testview, parent, false);
-			holder = new MyViewHolder(row);
+			holder = new Member(row);
 			row.setTag(holder);
 		} else {
 			// recycling
-			holder = (MyViewHolder) row.getTag();
+			holder = (Member) row.getTag();
 		}
 
-		if (holder.tvname != null) {
-			holder.tvname
-					.setText(dataList.get(position).get("name").toString());
-			holder.tvID.setText(dataList.get(position).get("ID").toString());
+		if (holder.tvName != null) {
+			holder.tvName.setText(dataList.get(position).get(0).toString());
+			holder.tvId.setText(dataList.get(position).get(1).toString());
 
 		}
 
@@ -57,15 +56,15 @@ public class GetAllWorkerAdapter extends ArrayAdapter<HashMap<String, Object>> {
 
 	}
 
-	class MyViewHolder {
-		public TextView tvname, tvID, tvcolor;
+	public class Member {
+		public TextView tvName, tvId, tvColor;
 
-		public MyViewHolder(View row) {
-			tvname = (TextView) row.findViewById(R.id.tvName);
-			tvID = (TextView) row.findViewById(R.id.tvID);
+		public Member(View row) {
+			tvName = (TextView) row.findViewById(R.id.tvName);
+			tvId = (TextView) row.findViewById(R.id.tvId);
 
 		}
-
 	}
 
 }
+

@@ -1,7 +1,6 @@
 package com.example.team_directory_v02;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -9,8 +8,8 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
+// for code review revision (Change data fetching to model class)
 public class DBHelper extends SQLiteOpenHelper {
 
 	public static final String DATABASE_NAME = "MyDBName.db",
@@ -82,12 +81,13 @@ public class DBHelper extends SQLiteOpenHelper {
 	}
 
 	// retrieve colors
-	public ArrayList<HashMap<String, Object>> loadAllEmployees;
-	HashMap<String, Object> employeeInfo;
 
-	public ArrayList<HashMap<String, Object>> loadColors(String color) {
+	public ArrayList<ArrayList<String>> loadColors(String color) {
 
-		loadAllEmployees = new ArrayList<HashMap<String, Object>>();
+		ArrayList<ArrayList<String>> loadAllEmployees;
+		// ArrayList<String> employeeInfo = new ArrayList<String>();
+
+		loadAllEmployees = new ArrayList<ArrayList<String>>();
 		SQLiteDatabase db = this.getReadableDatabase();
 		String selectQuery = ("SELECT * FROM " + MEMBERS_TABLE_NAME + " WHERE "
 				+ MEMBERS_COLUMN_COLOR + " = ?");
@@ -95,17 +95,16 @@ public class DBHelper extends SQLiteOpenHelper {
 		Cursor res = db.rawQuery(selectQuery, new String[] { color });
 
 		int getName = res.getColumnIndex(MEMBERS_COLUMN_NAME);
-		int getID = res.getColumnIndex(MEMBERS_COLUMN_ID);
+		int getId = res.getColumnIndex(MEMBERS_COLUMN_ID);
 
 		for (res.moveToFirst(); !res.isAfterLast(); res.moveToNext()) {
 
-			employeeInfo = new HashMap<String, Object>();
-			employeeInfo.put("name", res.getString(getName));
-			employeeInfo.put("ID", res.getString(getID));
+			ArrayList<String> employeeInfo = new ArrayList<String>();
+			employeeInfo.add(res.getString(getName));
+			employeeInfo.add(res.getString(getId));
 			loadAllEmployees.add(employeeInfo);
 		}
 
 		return loadAllEmployees;
 	}
-
 }

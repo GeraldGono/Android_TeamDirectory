@@ -1,7 +1,6 @@
 package com.example.team_directory_v02;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -16,7 +15,7 @@ public class BlueActivity extends Activity {
 
 	private ListView myBlueMembers;
 	public DBHelper mydb;
-	public ArrayList<HashMap<String, Object>> loadAllColorEmployee;
+	public ArrayList<ArrayList<String>> loadAllColorEmployee;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -36,11 +35,11 @@ public class BlueActivity extends Activity {
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
 
-				int getID = Integer.parseInt((String) ((TextView) arg1
-						.findViewById(R.id.tvID)).getText());
+				int getId = Integer.parseInt((String) ((TextView) arg1
+						.findViewById(R.id.tvId)).getText());
 
 				Bundle dataBundle = new Bundle();
-				dataBundle.putInt("id", getID);
+				dataBundle.putInt("id", getId);
 				Intent intent = new Intent(getApplicationContext(),
 						DisplayMember.class);
 				intent.putExtras(dataBundle);
@@ -62,4 +61,9 @@ public class BlueActivity extends Activity {
 
 	}
 
+	// Intent i = new Intent(getApplicationContext(), ColorActivity.class);
+	// i.putExtra("color", "red"); // to start red
+	// startActivity(i); pass the data as a Bundle
+
 }
+

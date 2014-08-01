@@ -19,15 +19,15 @@ public class Setting extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_sound_settings);
 		ckBox = (CheckBox) findViewById(R.id.checkBox1);
-
 		SharedPreferences pref = getApplicationContext().getSharedPreferences(
 				"higher", MODE_PRIVATE);
 		sound = pref.getInt("sound", 0);
 
 		if (sound == 1) {
 			ckBox.setChecked(true);
+			
 		}
-
+		
 	}
 
 	public void sound(View v) {
@@ -54,3 +54,4 @@ public class Setting extends Activity {
 	}
 
 }
+

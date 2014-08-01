@@ -4,7 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import android.media.MediaPlayer;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,7 +17,7 @@ import android.widget.ImageView;
 public class Group extends Activity {
 
 	private ImageView imgR, imgG, imgB, imgY;
-	public MediaPlayer beep1;
+	public SoundPool beep1;
 	public Button menu;
 	public int sound;
 
@@ -29,7 +30,8 @@ public class Group extends Activity {
 		imgY = (ImageView) findViewById(R.id.imageView1);
 		imgB = (ImageView) findViewById(R.id.imageView2);
 
-		beep1 = MediaPlayer.create(Group.this, R.raw.beep1);
+		final SoundPool sp = new SoundPool(5, AudioManager.STREAM_MUSIC, 0);
+		final int soundId = sp.load(Group.this, R.raw.beep1, 1);
 
 		SharedPreferences pref = getApplicationContext().getSharedPreferences(
 				"higher", MODE_PRIVATE);
@@ -44,7 +46,7 @@ public class Group extends Activity {
 						RedActivity.class));
 				finish();
 				if (sound == 1) {
-					beep1.start();
+					sp.play(soundId, 1, 1, 0, 0, 1);
 				}
 
 			}
@@ -57,7 +59,7 @@ public class Group extends Activity {
 						GreenActivity.class));
 				finish();
 				if (sound == 1) {
-					beep1.start();
+					sp.play(soundId, 1, 1, 0, 0, 1);
 				}
 
 			}
@@ -70,7 +72,7 @@ public class Group extends Activity {
 						YellowActivity.class));
 				finish();
 				if (sound == 1) {
-					beep1.start();
+					sp.play(soundId, 1, 1, 0, 0, 1);
 				}
 
 			}
@@ -83,7 +85,7 @@ public class Group extends Activity {
 						BlueActivity.class));
 				finish();
 				if (sound == 1) {
-					beep1.start();
+					sp.play(soundId, 1, 1, 0, 0, 1);
 				}
 
 			}
@@ -122,9 +124,7 @@ public class Group extends Activity {
 	public void menu(View v) {
 		startActivity(new Intent(Group.this, MainActivity.class));
 		finish();
-		if (sound == 1) {
-			beep1.start();
-		}
 
 	}
 }
+

@@ -26,15 +26,9 @@ public class DisplayMember extends Activity implements OnItemSelectedListener {
 	public int id_To_Update = 0;
 	public TextView name, dept, colorChosen, color, chooseColor;
 	public Spinner colorChoices;
-	public int sound, mPos;
+	public int sound, mPos, value;
 	public String mSelection;
-
-	// @Override
-	// protected void onSaveInstanceState(Bundle outState) {
-	// super.onSaveInstanceState(outState);
-	// outState.putInt("colorChoices", colorChoices.getSelectedItemPosition());
-	//
-	// }
+	public Bundle extras;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -48,11 +42,6 @@ public class DisplayMember extends Activity implements OnItemSelectedListener {
 
 		colorChoices.setOnItemSelectedListener(this);
 
-		// if (savedInstanceState != null) {
-		// colorChoices.setSelection(savedInstanceState.getInt("colorChoices",
-		// 0));
-		// }
-		// spinner item categories
 		List<String> categories = new ArrayList<String>();
 		categories.add("blue");
 		categories.add("red");
@@ -66,13 +55,13 @@ public class DisplayMember extends Activity implements OnItemSelectedListener {
 		colorChoices.setAdapter(dataAdapter);
 
 		mydb = new DBHelper(this);
-		Bundle extras = getIntent().getExtras();
+		extras = getIntent().getExtras();
 		if (extras != null) {
-			int Value = extras.getInt("id");
-			if (Value > 0) {
+			value = extras.getInt("id");
+			if (value > 0) {
 				// for view of member data from DBHelper
-				Cursor rs = mydb.getData(Value);
-				id_To_Update = Value;
+				Cursor rs = mydb.getData(value);
+				id_To_Update = value;
 				rs.moveToFirst();
 				String nam = rs.getString(rs
 						.getColumnIndex(DBHelper.MEMBERS_COLUMN_NAME));
@@ -120,10 +109,10 @@ public class DisplayMember extends Activity implements OnItemSelectedListener {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 
-		Bundle extras = getIntent().getExtras();
+		extras = getIntent().getExtras();
 		if (extras != null) {
-			int Value = extras.getInt("id");
-			if (Value > 0) {
+			value = extras.getInt("id");
+			if (value > 0) {
 				getMenuInflater().inflate(R.menu.activity_manipulate_member,
 						menu);
 			} else {
@@ -133,59 +122,73 @@ public class DisplayMember extends Activity implements OnItemSelectedListener {
 		return true;
 	}
 
+	public boolean editMember() {
+
+		Button b = (Button) findViewById(R.id.button1);
+		b.setVisibility(View.VISIBLE);
+		colorChoices.setVisibility(View.VISIBLE);
+		chooseColor.setVisibility(View.VISIBLE);
+
+		name.setEnabled(true);
+		name.setFocusableInTouchMode(true);
+		name.setClickable(true);
+
+		dept.setEnabled(true);
+		dept.setFocusableInTouchMode(true);
+		dept.setClickable(true);
+
+		return true;
+	}
+
+	public boolean deleteMember() {
+
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setMessage(R.string.delete)
+				.setPositiveButton(R.string.yes,
+						new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog, int id) {
+								mydb.deleteMembers(id_To_Update);
+								Toast.makeText(getApplicationContext(),
+										"Deleted Successfully",
+										Toast.LENGTH_SHORT).show();
+								startActivity(new Intent(
+										getApplicationContext(), Group.class));
+								finish();
+							}
+						})
+
+				.setNegativeButton(R.string.no,
+						new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog, int id) {
+								// User cancelled the dialog
+							}
+						});
+		AlertDialog d = builder.create();
+		d.setTitle("Are you sure");
+		d.show();
+
+		return true;
+	}
+
+	// for code revision(Edit()/Delete() function)
 	// for menu selection EDIT/DELETE members
 	public boolean onOptionsItemSelected(MenuItem item) {
 		super.onOptionsItemSelected(item);
 		switch (item.getItemId()) {
 		case R.id.Edit_Member: // edit member process
-			Button b = (Button) findViewById(R.id.button1);
-			b.setVisibility(View.VISIBLE);
-			colorChoices.setVisibility(View.VISIBLE);
-			chooseColor.setVisibility(View.VISIBLE);
-			name.setEnabled(true);
-			name.setFocusableInTouchMode(true);
-			name.setClickable(true);
+			editMember();
+			break;
 
-			dept.setEnabled(true);
-			dept.setFocusableInTouchMode(true);
-			dept.setClickable(true);
-
-			return true;
+		// return true;
 		case R.id.Delete_Member: // delete member process
-
-			AlertDialog.Builder builder = new AlertDialog.Builder(this);
-			builder.setMessage(R.string.delete)
-					.setPositiveButton(R.string.yes,
-							new DialogInterface.OnClickListener() {
-								public void onClick(DialogInterface dialog,
-										int id) {
-									mydb.deleteMembers(id_To_Update);
-									Toast.makeText(getApplicationContext(),
-											"Deleted Successfully",
-											Toast.LENGTH_SHORT).show();
-									startActivity(new Intent(
-											getApplicationContext(),
-											Group.class));
-									finish();
-								}
-							})
-
-					.setNegativeButton(R.string.no,
-							new DialogInterface.OnClickListener() {
-								public void onClick(DialogInterface dialog,
-										int id) {
-									// User cancelled the dialog
-								}
-							});
-			AlertDialog d = builder.create();
-			d.setTitle("Are you sure");
-			d.show();
-
-			return true;
+			deleteMember();
+			break;
+		// return true;
 		default:
 			return super.onOptionsItemSelected(item);
 
 		}
+		return true;
 	}
 
 	// saving new member process
@@ -229,3 +232,4 @@ public class DisplayMember extends Activity implements OnItemSelectedListener {
 	}
 
 }
+
