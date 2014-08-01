@@ -42,21 +42,27 @@ public class Group extends Activity {
 		imgR.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				startActivity(new Intent(getApplicationContext(),
-						RedActivity.class));
+				Intent i = new Intent(getApplicationContext(),
+						ColorActivity.class);
+				i.putExtra("color", "red");
+				startActivity(i);
+
 				finish();
 				if (sound == 1) {
 					sp.play(soundId, 1, 1, 0, 0, 1);
 				}
 
 			}
+
 		});
 		// open Green Group
 		imgG.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				startActivity(new Intent(getApplicationContext(),
-						GreenActivity.class));
+				Intent i = new Intent(getApplicationContext(),
+						ColorActivity.class);
+				i.putExtra("color", "green");
+				startActivity(i);
 				finish();
 				if (sound == 1) {
 					sp.play(soundId, 1, 1, 0, 0, 1);
@@ -68,8 +74,10 @@ public class Group extends Activity {
 		imgY.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				startActivity(new Intent(getApplicationContext(),
-						YellowActivity.class));
+				Intent i = new Intent(getApplicationContext(),
+						ColorActivity.class);
+				i.putExtra("color", "yellow");
+				startActivity(i);
 				finish();
 				if (sound == 1) {
 					sp.play(soundId, 1, 1, 0, 0, 1);
@@ -81,8 +89,10 @@ public class Group extends Activity {
 		imgB.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				startActivity(new Intent(getApplicationContext(),
-						BlueActivity.class));
+				Intent i = new Intent(getApplicationContext(),
+						ColorActivity.class);
+				i.putExtra("color", "blue");
+				startActivity(i);
 				finish();
 				if (sound == 1) {
 					sp.play(soundId, 1, 1, 0, 0, 1);

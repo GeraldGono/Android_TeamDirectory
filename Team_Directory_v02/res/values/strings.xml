@@ -10,10 +10,7 @@
     <string name="title_activity_display_member">DisplayMember</string>
     <string name="title_activity_group">Group</string>
     <string name="title_activity_frontpage">MainActivity</string>
-    <string name="title_activity_red_member">RedActivity</string>
-    <string name="title_activity_blue_member">BlueActivity</string>
-    <string name="title_activity_yellow_member">YellowActivity</string>
-    <string name="title_activity_green_member">GreenActivity</string>
+    <string name="title_activity_color_member">ColorActivity</string>
     <string name="title_activity_sound_settings">Setting</string>
     <string name="name">Name</string>
     <string name="dept">Dept</string>
@@ -23,6 +20,7 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="ON_OFF">sound</string>
+
     <string-array name="color_group">
         <item>red</item>
         <item>blue</item>
