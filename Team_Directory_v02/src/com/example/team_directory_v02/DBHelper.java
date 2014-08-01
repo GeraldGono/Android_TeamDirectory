@@ -9,8 +9,10 @@ import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-// for code review revision (Change data fetching to model class)
+// for code review revision (Change HashMap for better access operation)
 public class DBHelper extends SQLiteOpenHelper {
+
+	public SQLiteDatabase db;
 
 	public static final String DATABASE_NAME = "MyDBName.db",
 			MEMBERS_TABLE_NAME = "members", MEMBERS_COLUMN_ID = "id",
@@ -36,7 +38,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	}
 
 	public boolean insertMembers(String name, String dept, String color) {
-		SQLiteDatabase db = this.getWritableDatabase();
+		db = this.getWritableDatabase();
 		ContentValues contentValues = new ContentValues();
 		// insert new members in database
 		contentValues.put("name", name);
@@ -48,14 +50,14 @@ public class DBHelper extends SQLiteOpenHelper {
 	}
 
 	public Cursor getData(int id) {
-		SQLiteDatabase db = this.getReadableDatabase();
+		db = this.getReadableDatabase();
 		Cursor res = db.rawQuery("select * from members where id=" + id + "",
 				null);
 		return res;
 	}
 
 	public int numberOfRows() {
-		SQLiteDatabase db = this.getReadableDatabase();
+		db = this.getReadableDatabase();
 		int numRows = (int) DatabaseUtils.queryNumEntries(db,
 				MEMBERS_TABLE_NAME);
 		return numRows;
@@ -64,7 +66,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
 	public boolean updateMembers(Integer id, String name, String dept,
 			String color) {
-		SQLiteDatabase db = this.getWritableDatabase();
+		db = this.getWritableDatabase();
 		ContentValues contentValues = new ContentValues();
 		contentValues.put("name", name);
 		contentValues.put("dept", dept);
@@ -75,7 +77,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	}
 
 	public Integer deleteMembers(Integer id) {
-		SQLiteDatabase db = this.getWritableDatabase();
+		db = this.getWritableDatabase();
 		return db.delete("members", "id = ? ",
 				new String[] { Integer.toString(id) });
 	}
@@ -85,10 +87,9 @@ public class DBHelper extends SQLiteOpenHelper {
 	public ArrayList<ArrayList<String>> loadColors(String color) {
 
 		ArrayList<ArrayList<String>> loadAllEmployees;
-		// ArrayList<String> employeeInfo = new ArrayList<String>();
 
 		loadAllEmployees = new ArrayList<ArrayList<String>>();
-		SQLiteDatabase db = this.getReadableDatabase();
+		db = this.getReadableDatabase();
 		String selectQuery = ("SELECT * FROM " + MEMBERS_TABLE_NAME + " WHERE "
 				+ MEMBERS_COLUMN_COLOR + " = ?");
 
