@@ -1,2 +1,6 @@
 bin/
 gen/
+BlueActivity.java
+GreenActivity.java
+YellowActivity.java
+RedActivity.java
