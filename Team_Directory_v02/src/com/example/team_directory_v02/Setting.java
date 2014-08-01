@@ -8,7 +8,7 @@ import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.Toast;
-
+ 
 public class Setting extends Activity {
 
 	public CheckBox ckBox;
