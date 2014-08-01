@@ -8,6 +8,8 @@
         android:minSdkVersion="8"
         android:targetSdkVersion="19" />
 
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -15,12 +17,33 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.example.team_directory_v02.MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="com.example.team_directory_v02.DisplayMember"
+            android:label="@string/title_activity_display_member"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.example.team_directory_v02.Group"
+            android:label="@string/title_activity_group"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.example.team_directory_v02.ColorActivity"
+            android:label="@string/title_activity_color_member"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.example.team_directory_v02.Setting"
+            android:label="@string/title_activity_sound_settings"
+            android:screenOrientation="portrait" >
         </activity>
     </application>
 

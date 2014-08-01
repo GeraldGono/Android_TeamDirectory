@@ -6,6 +6,7 @@
     tools:context=".MainActivity" >
 
     <TextView
+        android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -15,35 +16,33 @@
         android:textSize="36sp" />
 
     <Button
-        android:id="@+id/grp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginBottom="66dp"
-        android:layout_marginLeft="18dp"
-        android:text="Group"
-        android:onClick="Group" />
-
-    <Button
         android:id="@+id/ext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/grp"
-        android:layout_alignBottom="@+id/grp"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="32dp"
-        android:text="Exit"
-        android:onClick="Exit" />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="56dp"
+        android:onClick="Exit"
+        android:text="Exit" />
 
     <Button
         android:id="@+id/set"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/ext"
-        android:layout_alignBottom="@+id/ext"
+        android:layout_above="@+id/ext"
         android:layout_centerHorizontal="true"
-        android:text="Setting"
-        android:onClick="Setting" />
+        android:layout_marginBottom="16dp"
+        android:onClick="Setting"
+        android:text="Setting" />
+
+    <Button
+        android:id="@+id/grp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/set"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="14dp"
+        android:onClick="Group"
+        android:text="Group" />
 
 </RelativeLayout>
