@@ -7,6 +7,7 @@ import android.content.SharedPreferences.Editor;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,7 +20,7 @@ public class Group extends Activity {
 	private ImageView imgR, imgG, imgB, imgY;
 	public SoundPool beep1;
 	public Button menu;
-	public int sound;
+	public boolean sound;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -33,11 +34,11 @@ public class Group extends Activity {
 		final SoundPool sp = new SoundPool(5, AudioManager.STREAM_MUSIC, 0);
 		final int soundId = sp.load(Group.this, R.raw.beep1, 1);
 
-		SharedPreferences pref = getApplicationContext().getSharedPreferences(
-				"higher", MODE_PRIVATE);
+		final SharedPreferences pref = PreferenceManager
+				.getDefaultSharedPreferences(getApplicationContext());
 		Editor editor = pref.edit();
 		editor.commit();
-		sound = pref.getInt("sound", 0);
+		sound = pref.getBoolean("sound", false);
 		// open Red Group
 		imgR.setOnClickListener(new OnClickListener() {
 			@Override
@@ -48,7 +49,7 @@ public class Group extends Activity {
 				startActivity(i);
 
 				finish();
-				if (sound == 1) {
+				if (sound) {
 					sp.play(soundId, 1, 1, 0, 0, 1);
 				}
 
@@ -64,7 +65,7 @@ public class Group extends Activity {
 				i.putExtra("color", "green");
 				startActivity(i);
 				finish();
-				if (sound == 1) {
+				if (sound) {
 					sp.play(soundId, 1, 1, 0, 0, 1);
 				}
 
@@ -79,7 +80,7 @@ public class Group extends Activity {
 				i.putExtra("color", "yellow");
 				startActivity(i);
 				finish();
-				if (sound == 1) {
+				if (sound) {
 					sp.play(soundId, 1, 1, 0, 0, 1);
 				}
 
@@ -94,7 +95,7 @@ public class Group extends Activity {
 				i.putExtra("color", "blue");
 				startActivity(i);
 				finish();
-				if (sound == 1) {
+				if (sound) {
 					sp.play(soundId, 1, 1, 0, 0, 1);
 				}
 
@@ -137,4 +138,5 @@ public class Group extends Activity {
 
 	}
 }
+
 

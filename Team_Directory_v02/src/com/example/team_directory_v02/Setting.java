@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.Toast;
@@ -12,35 +13,33 @@ import android.widget.Toast;
 public class Setting extends Activity {
 
 	public CheckBox ckBox;
-	public int sound;
+	public boolean sound;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_sound_settings);
 		ckBox = (CheckBox) findViewById(R.id.checkBox1);
-		SharedPreferences pref = getApplicationContext().getSharedPreferences(
-				"higher", MODE_PRIVATE);
-		sound = pref.getInt("sound", 0);
-
-		if (sound == 1) {
+		SharedPreferences pref = PreferenceManager
+				.getDefaultSharedPreferences(getApplicationContext());
+		sound = pref.getBoolean("sound", false);
+		if (sound) {
 			ckBox.setChecked(true);
-			
 		}
-		
+
 	}
 
 	public void sound(View v) {
 		ckBox = (CheckBox) v;
-		SharedPreferences pref = getApplicationContext().getSharedPreferences(
-				"higher", MODE_PRIVATE);
+		SharedPreferences pref = PreferenceManager
+				.getDefaultSharedPreferences(getApplicationContext());
 		Editor editor = pref.edit();
 		if (ckBox.isChecked()) {
-			editor.putInt("sound", 1);
+			editor.putBoolean("sound", true);
 			editor.commit();
 			Toast.makeText(this, "sound on", Toast.LENGTH_SHORT).show();
 		} else {
-			editor.putInt("sound", 0);
+			editor.putBoolean("sound", false);
 			editor.commit();
 
 		}
@@ -54,4 +53,5 @@ public class Setting extends Activity {
 	}
 
 }
+
 
