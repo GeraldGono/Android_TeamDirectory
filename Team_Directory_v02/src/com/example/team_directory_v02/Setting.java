@@ -1,7 +1,6 @@
 package com.example.team_directory_v02;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
@@ -47,7 +46,6 @@ public class Setting extends Activity {
 	}
 
 	public void menu(View v) {
-		startActivity(new Intent(getApplicationContext(), MainActivity.class));
 		finish();
 
 	}

@@ -47,8 +47,6 @@ public class Group extends Activity {
 						ColorActivity.class);
 				i.putExtra("color", "red");
 				startActivity(i);
-
-				finish();
 				if (sound) {
 					sp.play(soundId, 1, 1, 0, 0, 1);
 				}
@@ -64,7 +62,6 @@ public class Group extends Activity {
 						ColorActivity.class);
 				i.putExtra("color", "green");
 				startActivity(i);
-				finish();
 				if (sound) {
 					sp.play(soundId, 1, 1, 0, 0, 1);
 				}
@@ -79,7 +76,6 @@ public class Group extends Activity {
 						ColorActivity.class);
 				i.putExtra("color", "yellow");
 				startActivity(i);
-				finish();
 				if (sound) {
 					sp.play(soundId, 1, 1, 0, 0, 1);
 				}
@@ -94,7 +90,6 @@ public class Group extends Activity {
 						ColorActivity.class);
 				i.putExtra("color", "blue");
 				startActivity(i);
-				finish();
 				if (sound) {
 					sp.play(soundId, 1, 1, 0, 0, 1);
 				}
@@ -133,10 +128,10 @@ public class Group extends Activity {
 
 	// back to Main menu
 	public void menu(View v) {
-		startActivity(new Intent(Group.this, MainActivity.class));
 		finish();
 
 	}
 }
+
 
 

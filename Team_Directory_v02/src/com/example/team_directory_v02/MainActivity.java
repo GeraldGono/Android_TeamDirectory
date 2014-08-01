@@ -39,7 +39,6 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				startActivity(new Intent(getApplicationContext(), Group.class));
-				finish();
 				if (sound) {
 					sp.play(soundId, 1, 1, 0, 0, 1);
 				}
@@ -52,7 +51,6 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				startActivity(new Intent(getApplicationContext(), Setting.class));
-				finish();
 				if (sound) {
 					sp.play(soundId, 1, 1, 0, 0, 1);
 				}

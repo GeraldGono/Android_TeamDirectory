@@ -227,9 +227,7 @@ public class DisplayMember extends Activity implements OnItemSelectedListener {
 	}
 
 	public void back(View v) {
-		startActivity(new Intent(getApplicationContext(), Group.class));
 		finish();
 	}
 
 }
-
